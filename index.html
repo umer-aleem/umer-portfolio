@@ -308,6 +308,99 @@
   </div>
 </section>
 
+<!-- ============ WHY THE FOUNDATION MATTERS ============ -->
+<section class="section on-dark">
+  <div class="wrap">
+    <div class="eyebrow">Why this foundation matters</div>
+    <h2 class="h-lg">Organized data changes how decisions get made — and whether AI can be trusted with them.</h2>
+    <p class="kicker" style="color:var(--muted-dark); margin-top:14px;">Two sides of the same foundation: keeping the organization data-centric, and making sure only correct, cleaned data ever reaches an AI application.</p>
+
+    <div class="evidence-grid">
+      <div class="evidence-card">
+        <div class="evidence-tag">DATA-CENTRIC DECISIONS</div>
+        <h3>Organized data turns opinions into evidence.</h3>
+        <p>When data is fragmented across systems, every team ends up with its own version of the truth, and decisions drift toward whoever argues loudest. A well-organized data platform — consistent definitions, conformed dimensions, one accessible source per metric — lets an entire organization argue from the same numbers instead of the same guesses.</p>
+        <p>Netflix is a widely cited example of this shift in practice: rather than greenlighting shows on instinct alone, it structures viewing history, ratings and engagement data so that content decisions can be traced back to actual audience behavior. Its recommendation and content-decision systems are reported to influence around 80% of what members choose to watch, and viewing patterns behind a licensed show were part of the case for commissioning an original series that became a hit.</p>
+        <div class="evidence-source">Source: Netflix content-strategy case studies (Harvard Digital Innovation &amp; Transformation; codebasics.io)</div>
+      </div>
+
+      <div class="evidence-card">
+        <div class="evidence-tag">AI-READY DATA</div>
+        <h3>An AI application is only as trustworthy as the data it can see.</h3>
+        <p>AI doesn't fix messy data — it amplifies it. Duplicate customer records, outdated addresses, and unvalidated fields don't disappear when a model is added on top; they turn into confident-sounding wrong answers.</p>
+        <div class="evidence-stat">60%</div>
+        <p style="margin-top:0;">of AI projects are projected to be abandoned through 2026 at organizations without an AI-ready data practice, according to Gartner — with a further 30% of generative AI proof-of-concepts dropped over poor data quality and unclear value.</p>
+        <p>Zillow's iBuying business is a well-documented cautionary example: its home-pricing algorithm was trained on historical data that couldn't keep pace with a fast-moving market, leading Zillow to overpay for thousands of homes before shutting the program down and writing off hundreds of millions of dollars. The model wasn't the failure — the assumption that yesterday's data still described today's market was.</p>
+        <div class="evidence-source">Source: Gartner (via Amperity, Quantexa); Zillow investor call coverage (The Information / Bloomberg, Nov 2021)</div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px;">
+      <div class="eyebrow">See it in action</div>
+      <h3 style="color:var(--paper); font-size:22px; margin-bottom:10px;">Two small live widgets — reporting and migration.</h3>
+      <p class="kicker" style="color:var(--muted-dark); max-width:640px;">Sample widgets showing how I'd visualize business metrics and track a data migration in real time. Built with sample data for this page — not connected to a live client system.</p>
+    </div>
+
+    <div class="widgets-grid">
+      <!-- Reporting widget -->
+      <div class="widget-card">
+        <div class="widget-head">
+          <div>
+            <div class="widget-title">Regional Revenue — Report</div>
+            <div class="widget-sub">conformed sales warehouse · refreshed on demand</div>
+          </div>
+          <span class="widget-tag">DEMO DATA</span>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-val" id="kpiRevenue">$4.82M</div><div class="kpi-label">TOTAL REVENUE</div></div>
+          <div class="kpi"><div class="kpi-val" id="kpiGrowth">+12.4%</div><div class="kpi-label">QoQ GROWTH</div></div>
+          <div class="kpi"><div class="kpi-val" id="kpiTop">Region B</div><div class="kpi-label">TOP PERFORMER</div></div>
+        </div>
+
+        <div class="bar-chart" id="barChart">
+          <div class="bar-col"><div class="bar-fill" style="height:55%;"></div><div class="bar-name">Region A</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:88%;"></div><div class="bar-name">Region B</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:40%;"></div><div class="bar-name">Region C</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:63%;"></div><div class="bar-name">Region D</div></div>
+          <div class="bar-col"><div class="bar-fill" style="height:30%;"></div><div class="bar-name">Region E</div></div>
+        </div>
+
+        <button class="widget-btn" id="refreshReport">Refresh metrics</button>
+      </div>
+
+      <!-- Migration widget -->
+      <div class="widget-card">
+        <div class="widget-head">
+          <div>
+            <div class="widget-title">Legacy DB → Snowflake</div>
+            <div class="widget-sub">simulated batch migration</div>
+          </div>
+          <span class="widget-tag">SIMULATED</span>
+        </div>
+
+        <div class="migration-track">
+          <div class="migration-line"><div class="migration-line-fill" id="migLineFill"></div></div>
+          <div class="migration-stages">
+            <div class="migration-stage"><div class="migration-dot" id="dotSource"></div><div class="migration-stage-label">SOURCE</div></div>
+            <div class="migration-stage"><div class="migration-dot" id="dotStaging"></div><div class="migration-stage-label">STAGING</div></div>
+            <div class="migration-stage"><div class="migration-dot" id="dotValidate"></div><div class="migration-stage-label">VALIDATE</div></div>
+            <div class="migration-stage"><div class="migration-dot" id="dotWarehouse"></div><div class="migration-stage-label">WAREHOUSE</div></div>
+          </div>
+        </div>
+
+        <div class="migration-progress-row">
+          <span id="migRecords">0 / 482,600 records</span>
+          <strong id="migPercent">0%</strong>
+        </div>
+        <div class="progress-bar"><div class="progress-bar-fill" id="migProgressFill"></div></div>
+
+        <button class="widget-btn" id="runMigration">Run migration</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ DIFFERENTIATOR STATEMENT ============ -->
 <section class="section statement">
   <div class="wrap">

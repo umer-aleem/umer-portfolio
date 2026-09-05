@@ -82,7 +82,74 @@ document.querySelectorAll('[data-toggle-project]').forEach(head => {
   });
 });
 
-// ---------------- AI chat concept demo ----------------
+// ---------------- Reporting widget (demo) ----------------
+const reportDatasets = [
+  { revenue: '$4.82M', growth: '+12.4%', top: 'Region B', bars: [55, 88, 40, 63, 30] },
+  { revenue: '$5.16M', growth: '+9.1%',  top: 'Region D', bars: [48, 70, 52, 91, 36] },
+  { revenue: '$4.35M', growth: '+15.7%', top: 'Region A', bars: [86, 60, 45, 58, 42] },
+  { revenue: '$5.60M', growth: '+7.8%',  top: 'Region C', bars: [50, 65, 89, 47, 55] }
+];
+let reportIndex = 0;
+const refreshBtn = document.getElementById('refreshReport');
+if(refreshBtn){
+  refreshBtn.addEventListener('click', () => {
+    reportIndex = (reportIndex + 1) % reportDatasets.length;
+    const d = reportDatasets[reportIndex];
+    document.getElementById('kpiRevenue').textContent = d.revenue;
+    document.getElementById('kpiGrowth').textContent = d.growth;
+    document.getElementById('kpiTop').textContent = d.top;
+    const fills = document.querySelectorAll('#barChart .bar-fill');
+    fills.forEach((el, i) => { el.style.height = d.bars[i] + '%'; });
+  });
+}
+
+// ---------------- Migration widget (demo) ----------------
+const runMigrationBtn = document.getElementById('runMigration');
+const migLineFill = document.getElementById('migLineFill');
+const migProgressFill = document.getElementById('migProgressFill');
+const migPercent = document.getElementById('migPercent');
+const migRecords = document.getElementById('migRecords');
+const dotSource = document.getElementById('dotSource');
+const dotStaging = document.getElementById('dotStaging');
+const dotValidate = document.getElementById('dotValidate');
+const dotWarehouse = document.getElementById('dotWarehouse');
+const TOTAL_RECORDS = 482600;
+
+if(runMigrationBtn){
+  runMigrationBtn.addEventListener('click', () => {
+    runMigrationBtn.disabled = true;
+    runMigrationBtn.textContent = 'Running…';
+    [dotSource, dotStaging, dotValidate, dotWarehouse].forEach(d => d.classList.remove('done'));
+    dotSource.classList.add('done');
+
+    let progress = 0;
+    const duration = 4200;
+    const start = performance.now();
+
+    function tick(now){
+      const elapsed = now - start;
+      progress = Math.min(100, (elapsed / duration) * 100);
+
+      migLineFill.style.width = progress + '%';
+      migProgressFill.style.width = progress + '%';
+      migPercent.textContent = Math.round(progress) + '%';
+      migRecords.textContent = Math.round((progress/100) * TOTAL_RECORDS).toLocaleString() + ' / ' + TOTAL_RECORDS.toLocaleString() + ' records';
+
+      if(progress >= 33) dotStaging.classList.add('done');
+      if(progress >= 66) dotValidate.classList.add('done');
+      if(progress >= 100) dotWarehouse.classList.add('done');
+
+      if(progress < 100){
+        requestAnimationFrame(tick);
+      } else {
+        runMigrationBtn.disabled = false;
+        runMigrationBtn.textContent = 'Run migration again';
+      }
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
 const demoData = [
   {
     q: "Which region had the highest growth last quarter?",
