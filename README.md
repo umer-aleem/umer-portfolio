@@ -1,7 +1,6 @@
-# Muhammad Umer — Personal Website (Standard palette)
+# Muhammad Umer — Personal Website (Vibrant / high-contrast palette)
 
-This is the **standard** version — warm off-white, deep charcoal, and a muted teal accent.
-A second package, **vibrant/high-contrast**, uses the same layout and content with a bolder black/white/coral-cyan palette for comparison.
+This is the **vibrant, high-contrast** version — pure black/white with a bold coral-red and electric cyan accent, for comparison against the standard warm/teal palette. Layout, copy, and widgets are identical; only `style.css` differs.
 
 A static, no-build personal brand site for Muhammad Umer (Principal Data Engineer), built to link from Upwork, Toptal, and LinkedIn.
 

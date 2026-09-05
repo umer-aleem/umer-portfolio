@@ -3,19 +3,20 @@
    Design tokens
    ============================================================ */
 :root{
-  --ink:        #12181A;   /* near-black, primary text on light */
-  --paper:      #F4F2EC;   /* warm off-white background */
-  --paper-dim:  #EAE7DE;   /* slightly deeper off-white for panels */
-  --charcoal:   #0E1416;   /* deep charcoal, dark sections */
-  --charcoal-2: #161E21;   /* dark panel on charcoal */
-  --line:       #D8D4C8;   /* hairline on light */
-  --line-dark:  #2A3336;   /* hairline on dark */
-  --muted:      #6B6A63;   /* muted text on light */
-  --muted-dark: #92A2A0;   /* muted text on dark */
-  --teal:       #1F6F63;   /* signal accent — data flow */
-  --teal-soft:  #4E948A;
-  --teal-glow:  rgba(31,111,99,0.18);
-  --amber:      #C98A3E;   /* rare second accent — used only for highlight numerals */
+  /* ---- Vibrant / high-contrast variant ---- */
+  --ink:        #060608;   /* true near-black, primary text on light */
+  --paper:      #FFFFFF;   /* pure white background */
+  --paper-dim:  #F1F0F4;   /* light panel */
+  --charcoal:   #0A0712;   /* deep near-black with a violet cast */
+  --charcoal-2: #17101F;   /* dark panel */
+  --line:       #E2E1E8;   /* hairline on light */
+  --line-dark:  #362A4A;   /* hairline on dark, violet-tinted */
+  --muted:      #4B4A52;   /* muted text on light */
+  --muted-dark: #BDB2D6;   /* muted text on dark, lavender */
+  --teal:       #FF3B5C;   /* signal accent — vivid coral/red, data flow */
+  --teal-soft:  #FF7590;
+  --teal-glow:  rgba(255,59,92,0.24);
+  --amber:      #00E5FF;   /* rare second accent — vivid cyan for highlight numerals */
 
   --font-head: 'Space Grotesk', 'Arial Narrow', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
