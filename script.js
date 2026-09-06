@@ -82,12 +82,40 @@ document.querySelectorAll('[data-toggle-project]').forEach(head => {
   });
 });
 
-// ---------------- Reporting widget (demo) ----------------
+// ---------------- Reporting widget (demo): Care Coordinator Task Performance ----------------
+// Each task's minutes are scaled against a fixed max (45) so bar heights stay comparable across days.
+const MAX_MINUTES = 45;
 const reportDatasets = [
-  { revenue: '$4.82M', growth: '+12.4%', top: 'Region B', bars: [55, 88, 40, 63, 30] },
-  { revenue: '$5.16M', growth: '+9.1%',  top: 'Region D', bars: [48, 70, 52, 91, 36] },
-  { revenue: '$4.35M', growth: '+15.7%', top: 'Region A', bars: [86, 60, 45, 58, 42] },
-  { revenue: '$5.60M', growth: '+7.8%',  top: 'Region C', bars: [50, 65, 89, 47, 55] }
+  { // Today
+    coordinators: 38, tasks: 512,
+    rows: [
+      { name:'Outreach',  desired:15, actual:18 },
+      { name:'Care Plan', desired:30, actual:26 },
+      { name:'Med Recon', desired:20, actual:24 },
+      { name:'Discharge', desired:25, actual:23 },
+      { name:'Referral',  desired:35, actual:41 }
+    ]
+  },
+  { // Yesterday
+    coordinators: 41, tasks: 486,
+    rows: [
+      { name:'Outreach',  desired:15, actual:16 },
+      { name:'Care Plan', desired:30, actual:33 },
+      { name:'Med Recon', desired:20, actual:19 },
+      { name:'Discharge', desired:25, actual:28 },
+      { name:'Referral',  desired:35, actual:37 }
+    ]
+  },
+  { // Last Monday
+    coordinators: 35, tasks: 460,
+    rows: [
+      { name:'Outreach',  desired:15, actual:14 },
+      { name:'Care Plan', desired:30, actual:29 },
+      { name:'Med Recon', desired:20, actual:22 },
+      { name:'Discharge', desired:25, actual:24 },
+      { name:'Referral',  desired:35, actual:33 }
+    ]
+  }
 ];
 let reportIndex = 0;
 const refreshBtn = document.getElementById('refreshReport');
@@ -95,15 +123,28 @@ if(refreshBtn){
   refreshBtn.addEventListener('click', () => {
     reportIndex = (reportIndex + 1) % reportDatasets.length;
     const d = reportDatasets[reportIndex];
-    document.getElementById('kpiRevenue').textContent = d.revenue;
-    document.getElementById('kpiGrowth').textContent = d.growth;
-    document.getElementById('kpiTop').textContent = d.top;
-    const fills = document.querySelectorAll('#barChart .bar-fill');
-    fills.forEach((el, i) => { el.style.height = d.bars[i] + '%'; });
+
+    document.getElementById('kpiCoordinators').textContent = d.coordinators;
+    document.getElementById('kpiTasks').textContent = d.tasks;
+
+    const totalDesired = d.rows.reduce((s,r) => s + r.desired, 0);
+    const totalDiff = d.rows.reduce((s,r) => s + (r.actual - r.desired), 0);
+    const variance = (totalDiff / totalDesired) * 100;
+    const varianceEl = document.getElementById('kpiVariance');
+    varianceEl.textContent = (variance >= 0 ? '+' : '') + variance.toFixed(1) + '%';
+
+    const cols = document.querySelectorAll('#barChart .bar-col');
+    cols.forEach((col, i) => {
+      const r = d.rows[i];
+      const diff = r.actual - r.desired;
+      col.querySelector('.bar-diff').textContent = (diff >= 0 ? '+' : '') + diff + 'm';
+      col.querySelector('.bar-fill.desired').style.height = Math.round((r.desired / MAX_MINUTES) * 100) + '%';
+      col.querySelector('.bar-fill.actual').style.height = Math.round((r.actual / MAX_MINUTES) * 100) + '%';
+    });
   });
 }
 
-// ---------------- Migration widget (demo) ----------------
+// ---------------- Migration widget (demo): SAP + S3 inventory + DBMS -> Lake -> Warehouse ----------------
 const runMigrationBtn = document.getElementById('runMigration');
 const migLineFill = document.getElementById('migLineFill');
 const migProgressFill = document.getElementById('migProgressFill');
@@ -113,7 +154,7 @@ const dotSource = document.getElementById('dotSource');
 const dotStaging = document.getElementById('dotStaging');
 const dotValidate = document.getElementById('dotValidate');
 const dotWarehouse = document.getElementById('dotWarehouse');
-const TOTAL_RECORDS = 482600;
+const TOTAL_RECORDS = 1284300;
 
 if(runMigrationBtn){
   runMigrationBtn.addEventListener('click', () => {

@@ -338,7 +338,7 @@
     <div style="margin-top:60px;">
       <div class="eyebrow">See it in action</div>
       <h3 style="color:var(--paper); font-size:22px; margin-bottom:10px;">Two small live widgets — reporting and migration.</h3>
-      <p class="kicker" style="color:var(--muted-dark); max-width:640px;">Sample widgets showing how I'd visualize business metrics and track a data migration in real time. Built with sample data for this page — not connected to a live client system.</p>
+      <p class="kicker" style="color:var(--muted-dark); max-width:640px;">Two representative scenarios from real data engineering work: an operational healthcare report comparing planned vs. actual task time, and a multi-source migration unifying SAP, S3 inventory data and DBMS tables into one lake before it reaches the warehouse. Sample data for this page — not connected to a live client system.</p>
     </div>
 
     <div class="widgets-grid">
@@ -346,51 +346,58 @@
       <div class="widget-card">
         <div class="widget-head">
           <div>
-            <div class="widget-title">Regional Revenue — Report</div>
-            <div class="widget-sub">conformed sales warehouse · refreshed on demand</div>
+            <div class="widget-title">Care Coordinator Task Performance</div>
+            <div class="widget-sub">operational healthcare report · desired vs. actual time</div>
           </div>
           <span class="widget-tag">DEMO DATA</span>
         </div>
 
         <div class="kpi-row">
-          <div class="kpi"><div class="kpi-val" id="kpiRevenue">$4.82M</div><div class="kpi-label">TOTAL REVENUE</div></div>
-          <div class="kpi"><div class="kpi-val" id="kpiGrowth">+12.4%</div><div class="kpi-label">QoQ GROWTH</div></div>
-          <div class="kpi"><div class="kpi-val" id="kpiTop">Region B</div><div class="kpi-label">TOP PERFORMER</div></div>
+          <div class="kpi"><div class="kpi-val" id="kpiCoordinators">38</div><div class="kpi-label">COORDINATORS ACTIVE TODAY</div></div>
+          <div class="kpi"><div class="kpi-val" id="kpiTasks">512</div><div class="kpi-label">TASKS COMPLETED TODAY</div></div>
+          <div class="kpi"><div class="kpi-val" id="kpiVariance">+5.6%</div><div class="kpi-label">AVG. TIME VARIANCE</div></div>
         </div>
 
         <div class="bar-chart" id="barChart">
-          <div class="bar-col"><div class="bar-fill" style="height:55%;"></div><div class="bar-name">Region A</div></div>
-          <div class="bar-col"><div class="bar-fill" style="height:88%;"></div><div class="bar-name">Region B</div></div>
-          <div class="bar-col"><div class="bar-fill" style="height:40%;"></div><div class="bar-name">Region C</div></div>
-          <div class="bar-col"><div class="bar-fill" style="height:63%;"></div><div class="bar-name">Region D</div></div>
-          <div class="bar-col"><div class="bar-fill" style="height:30%;"></div><div class="bar-name">Region E</div></div>
+          <div class="bar-col"><div class="bar-diff">+3m</div><div class="bar-pair"><div class="bar-fill desired" style="height:33%;"></div><div class="bar-fill actual" style="height:40%;"></div></div><div class="bar-name">Outreach</div></div>
+          <div class="bar-col"><div class="bar-diff">-4m</div><div class="bar-pair"><div class="bar-fill desired" style="height:67%;"></div><div class="bar-fill actual" style="height:58%;"></div></div><div class="bar-name">Care Plan</div></div>
+          <div class="bar-col"><div class="bar-diff">+4m</div><div class="bar-pair"><div class="bar-fill desired" style="height:44%;"></div><div class="bar-fill actual" style="height:53%;"></div></div><div class="bar-name">Med Recon</div></div>
+          <div class="bar-col"><div class="bar-diff">-2m</div><div class="bar-pair"><div class="bar-fill desired" style="height:56%;"></div><div class="bar-fill actual" style="height:51%;"></div></div><div class="bar-name">Discharge</div></div>
+          <div class="bar-col"><div class="bar-diff">+6m</div><div class="bar-pair"><div class="bar-fill desired" style="height:78%;"></div><div class="bar-fill actual" style="height:91%;"></div></div><div class="bar-name">Referral</div></div>
         </div>
+        <div class="bar-legend"><span><i class="desired"></i>Desired time</span><span><i class="actual"></i>Actual time</span></div>
 
-        <button class="widget-btn" id="refreshReport">Refresh metrics</button>
+        <button class="widget-btn" id="refreshReport">Load next day →</button>
       </div>
 
       <!-- Migration widget -->
       <div class="widget-card">
         <div class="widget-head">
           <div>
-            <div class="widget-title">Legacy DB → Snowflake</div>
-            <div class="widget-sub">simulated batch migration</div>
+            <div class="widget-title">Multi-Source Data Migration</div>
+            <div class="widget-sub">unifying inventories into one lake, then the warehouse</div>
           </div>
           <span class="widget-tag">SIMULATED</span>
+        </div>
+
+        <div class="source-chips">
+          <span class="source-chip">SAP<em>512K</em></span>
+          <span class="source-chip">S3 Inventory<em>410K</em></span>
+          <span class="source-chip">DBMS<em>362K</em></span>
         </div>
 
         <div class="migration-track">
           <div class="migration-line"><div class="migration-line-fill" id="migLineFill"></div></div>
           <div class="migration-stages">
-            <div class="migration-stage"><div class="migration-dot" id="dotSource"></div><div class="migration-stage-label">SOURCE</div></div>
-            <div class="migration-stage"><div class="migration-dot" id="dotStaging"></div><div class="migration-stage-label">STAGING</div></div>
-            <div class="migration-stage"><div class="migration-dot" id="dotValidate"></div><div class="migration-stage-label">VALIDATE</div></div>
+            <div class="migration-stage"><div class="migration-dot" id="dotSource"></div><div class="migration-stage-label">SOURCES</div></div>
+            <div class="migration-stage"><div class="migration-dot" id="dotStaging"></div><div class="migration-stage-label">DATA LAKE</div></div>
+            <div class="migration-stage"><div class="migration-dot" id="dotValidate"></div><div class="migration-stage-label">HARMONIZE</div></div>
             <div class="migration-stage"><div class="migration-dot" id="dotWarehouse"></div><div class="migration-stage-label">WAREHOUSE</div></div>
           </div>
         </div>
 
         <div class="migration-progress-row">
-          <span id="migRecords">0 / 482,600 records</span>
+          <span id="migRecords">0 / 1,284,300 records</span>
           <strong id="migPercent">0%</strong>
         </div>
         <div class="progress-bar"><div class="progress-bar-fill" id="migProgressFill"></div></div>

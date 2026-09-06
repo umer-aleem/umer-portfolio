@@ -1,8 +1,6 @@
 # Muhammad Umer — Personal Website (Vibrant / high-contrast palette)
 
-This is the **vibrant, high-contrast** version — pure black/white with a bold coral-red and electric cyan accent, for comparison against the standard warm/teal palette. Layout, copy, and widgets are identical; only `style.css` differs.
-
-A static, no-build personal brand site for Muhammad Umer (Principal Data Engineer), built to link from Upwork, Toptal, and LinkedIn.
+A static, no-build personal brand site for Muhammad Umer (Principal Data Engineer), built to link from Upwork, Toptal, and LinkedIn. Pure black/white with a bold coral-red and electric-cyan accent. Fully responsive for mobile, tablet and desktop.
 
 It's plain HTML/CSS/JS — nothing to install, nothing to build. You can host it on GitHub Pages for free in a few clicks, entirely from the GitHub website.
 
